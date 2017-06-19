@@ -1,6 +1,6 @@
 @extends('master.single')
 @section('title', 'Log Masuk')
-@section('site.description', 'Log Masuk ke Sistem Bersepadu JTKPK')
+@section('site.description', 'Log Masuk ke Portal Bersepadu JTKPK')
 
 @section('content')
 <!-- Login Content -->
@@ -11,8 +11,8 @@
                 <div class="push-50 animated fadeIn">
                     <!-- Login Title -->
                     <div class="text-center">
-                        <img src="{{ asset('/img/logo.png') }}" width="100">
-                        <p class="text-muted push-10-t font-w300">Sistem Bersepadu Juruteknik Komputer Negeri Perak (JTKPK)</p>
+                        <a href="{{ url('/') }}"><img src="{{ asset('/img/logo.png') }}" width="100" title="Portal Juruteknik Komputer Negeri Perak (JTKPK)"></a>
+                        <p class="text-muted push-10-t font-w300">Portal Juruteknik Komputer Negeri Perak (JTKPK)</p>
                     </div>
                     <!-- END Login Title -->
 
@@ -21,21 +21,14 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="form-material form-material-primary floating">
-                                    <input class="form-control" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
-                                    <label for="email">Alamat E-mel</label>
-                                </div>
-                            </div>
+                            <label for="email">Alamat E-mel</label>
+                            <input class="form-control" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="form-material form-material-primary floating">
-                                    <input class="form-control" type="password" id="password" name="password" required>
-                                    <label for="password">Kata Laluan</label>
-                                </div>
-                            </div>
+                            <label for="email">Kata Laluan</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
                         </div>
+
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label class="css-input switch switch-sm switch-primary">
@@ -43,9 +36,9 @@
                                 </label>
                             </div>
                             <div class="col-xs-6">
-                                <div class="font-s13 text-right push-5-t">
+                                <!--<div class="font-s13 text-right push-5-t">
                                     <a href="{{ url('/password/reset') }}"> Lupa Kata Laluan ?</a>
-                                </div>
+                                </div>//-->
                             </div>
                         </div>
                         <div class="form-group push-30-t">

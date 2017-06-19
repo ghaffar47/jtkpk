@@ -47,7 +47,11 @@
         <link rel="stylesheet" href="/assets/js/plugins/dropzonejs/dropzone.min.css">
         <link rel="stylesheet" href="/assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.css">
         <link rel="stylesheet" href="/assets/js/plugins/datatables/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="/assets/js/plugins/fullcalendar/fullcalendar.min.css">
         <link rel="stylesheet" href="/assets/js/plugins/sweetalert/sweetalert.min.css">
+        <link rel="stylesheet" href="/assets/js/plugins/magnific-popup/magnific-popup.min.css">
+        <link rel="stylesheet" href="/assets/js/plugins/summernote/summernote.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
         @yield('css')
 
         <!-- Bootstrap and OneUI CSS framework -->
@@ -129,18 +133,14 @@
                                         <i class="fa fa-user"></i><span class="sidebar-mini-hide">Profil</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="{{ (Request::path()=='dev-team') ? 'active':'' }}" href="{{ url('/dev-team') }}">
-                                        <i class="fa fa-users"></i><span class="sidebar-mini-hide">Development Team</span>
-                                    </a>
-                                </li>
-                                @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+
+                                @if (Auth::user()->hasRole('super-admin') || Auth::user()->hasRole('admin'))
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-support"></i><span class="sidebar-mini-hide">Pentadbiran</span>
                                     </a>
                                     <ul>
-                                        @if (Auth::user()->role == 'super-admin')
+                                        @if (Auth::user()->hasRole('super-admin'))
                                             <li>
                                                 <a class="{{ (Request::path()=='admin/packages') ? 'active':'' }}" href="{{ url('/admin/packages') }}">Pakej Sistem</a>
                                             </li>
@@ -151,6 +151,37 @@
                                     </ul>
                                 </li>
                                 @endif
+                                
+                                <!--
+                                    MODULE TERSEDIA
+                                -->
+                                @if (!Auth::user()->hasRole('jpn'))
+                                <li>
+                                    <a class="{{ (Request::path()=='tugasan-harian') ? 'active':'' }}" href="{{ url('/tugasan-harian') }}">
+                                        <i class="fa fa-book"></i><span class="sidebar-mini-hide">Tugasan Harian</span>
+                                    </a>
+                                </li>
+                                @endif
+                                <li>
+                                    <a class="{{ (Request::path()=='aduan-kerosakan') ? 'active':'' }}" href="{{ url('/aduan-kerosakan') }}">
+                                        <i class="fa fa-wrench"></i><span class="sidebar-mini-hide">Aduan Kerosakan</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{ (Request::path()=='dev-team') ? 'active':'' }}" href="{{ url('/dev-team') }}">
+                                        <i class="fa fa-users"></i><span class="sidebar-mini-hide">Development Team</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{ (Request::path()=='smart-team') ? 'active':'' }}" href="{{ url('/smart-team') }}">
+                                        <i class="fa fa-ambulance"></i><span class="sidebar-mini-hide">SMART Team</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{ (Request::path()=='forums') ? 'active':'' }}" href="{{ url('/forums') }}">
+                                        <i class="fa fa-comments"></i><span class="sidebar-mini-hide">FORUM</span>
+                                    </a>
+                                </li>
 
                                 <!-- PAKEJ MENU -->
                                 @foreach (App\Packages::all() as $package)
@@ -190,7 +221,7 @@
                         @else
                             <div class="btn-group">
                                 <button class="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
-                                    <img src="/assets/img/avatars/avatar10.jpg" alt="Avatar">
+                                    <img src="/avatar" class="img-avatar" title="{{ Auth::user()->name }}">
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
@@ -226,6 +257,9 @@
                             <i class="fa fa-ellipsis-v"></i>
                         </button>
                     </li>
+                    <li class="h6 hidden-xs hidden-sm">
+                        <img src="/avatar" class="img-avatar img-avatar32 push-5-r" title="{{ Auth::user()->name }}"> {{ Auth::user()->name }}
+                    </li>
                 </ul>
                 <!-- END Header Navigation Left -->
             </header>
@@ -239,6 +273,9 @@
 
             <!-- Footer -->
             <footer id="page-footer" class="content-mini content-mini-full font-s12 bg-gray-lighter clearfix">
+                <div class="pull-left font-w300">
+                    Dibangunkan dengan <i class="fa fa-heart text-city"></i> oleh <a class="font-w600" href="https://github.com/putera" target="_blank">JTKPK</a>
+                </div>
                 <div class="pull-right font-w300">
                     &copy; {{ date('Y') }} oleh <span class="font-w400">Juruteknik Komputer Negeri Perak (JTKPK)</span>. Semua Hakcipta Terpelihara.
                 </div>
@@ -256,7 +293,7 @@
         <script src="/assets/js/core/jquery.countTo.min.js"></script>
         <script src="/assets/js/core/jquery.placeholder.min.js"></script>
         <script src="/assets/js/core/js.cookie.min.js"></script>
-        <script src="/assets/js/app.js"></script>
+        <script src="/assets/js/app.js.php"></script>
         <script src="/js/ajax.js"></script>
         <script src="/js/custom.js"></script>
 
@@ -267,6 +304,7 @@
         <script src="/assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
         <script src="/assets/js/plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
         <script src="/assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+        <script src="/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
         <script src="/assets/js/plugins/select2/select2.full.min.js"></script>
         <script type="text/javascript">
             $.fn.modal.Constructor.prototype.enforceFocus = function () {};
@@ -277,13 +315,21 @@
         <script src="/assets/js/plugins/dropzonejs/dropzone.min.js"></script>
         <script src="/assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.js"></script>
         <script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="/assets/js/pages/base_tables_datatables.js"></script>
+        <script src="/assets/js/pages/base_tables_datatables.js"></script>        
+        <script src="/assets/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+        <script src="/assets/js/plugins/fullcalendar/gcal.min.js"></script>
+        <!--<script src="/assets/js/pages/calendar.js.php"></script>-->
         <script src="/assets/js/plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="/assets/js/plugins/summernote/summernote.min.js"></script>
+        <script src="/assets/js/plugins/ckeditor/ckeditor.js"></script>
+        <script src="/assets/js/plugins/jquery-textcomplete/jquery.textcomplete.min.js"></script>
+        <script src="/assets/js/plugins/magnific-popup/magnific-popup.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/emojione/2.2.6/lib/js/emojione.min.js"></script>
         @yield('js')
 
         <script>
             jQuery(function () {
-                App.initHelpers(['datepicker', 'datetimepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider', 'tags-inputs' @yield('app.helper')]);
+                App.initHelpers(['datepicker', 'datetimepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider', 'magnific-popup', 'tags-inputs' @yield('app.helper')]);
                 @yield('jquery')
             });
         </script>

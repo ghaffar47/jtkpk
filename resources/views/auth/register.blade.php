@@ -98,11 +98,11 @@
                     <h3 class="block-title">Terma &amp; Syarat-Syarat</h3>
                 </div>
                 <div class="block-content">
-                    <p>Dengan pendaftaran ini, anda secara tidak langsung bersetuju dan akur dengan semua terma dan syarat-syarat yang telah disenaraikan dibawah antaranya adalah :</p>
+                    <p>Dengan pendaftaran yang dilakukan, anda secara tidak langsung bersetuju dan akur dengan semua terma dan syarat-syarat yang telah disenaraikan dibawah :-</p>
                     <ul>
-                        <li>...</li>
-                        <li>...</li>
-                        <li>...</li>
+                        <li>Anda bersetuju dengan semua terma dan syarat-syarat di Portal JTKPK ini.</li>
+                        <li>Membenarkan penggunaan maklumat anda seperti e-mel rasmi untuk kegunaan rasmi dan berkaitan dengan tugas rasmi.</li>
+                        <li>Lain-lain syarat akan dikemaskini dari masa ke semasa.</li>
                     </ul>
                 </div>
             </div>

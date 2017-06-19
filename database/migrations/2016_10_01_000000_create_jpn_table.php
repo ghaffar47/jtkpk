@@ -20,7 +20,8 @@ class CreateJpnTable extends Migration
             $table->string('kod_negeri');
             $table->string('kod_jpn')->unique();
             $table->string('jpn');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

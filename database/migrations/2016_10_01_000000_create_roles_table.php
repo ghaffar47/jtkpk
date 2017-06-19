@@ -19,7 +19,8 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('role')->unique();
             $table->string('role_name');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

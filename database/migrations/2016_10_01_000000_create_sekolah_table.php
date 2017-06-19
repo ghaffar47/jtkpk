@@ -27,7 +27,12 @@ class CreateSekolahTable extends Migration
             $table->string('no_fax')->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->timestamps();
+            $table->string('nama_kj')->nullable();
+            $table->string('jawatan_kj')->nullable();
+            $table->string('emel_kj')->nullable();
+            $table->string('pwd_1bestarinet')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('kod_ppd')->references('kod_ppd')->on('ppd')->onDelete('cascade');
         });
     }

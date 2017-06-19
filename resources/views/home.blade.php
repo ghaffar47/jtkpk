@@ -4,30 +4,29 @@
 
 @section('content')
 <!-- Page Header -->
-<div class="content bg-image overflow-hidden" style="background-image: url('/assets/img/photos/photo3@2x.jpg');">
+<div class="content bg-image overflow-hidden" style="background-image: url('/assets/img/photos/photo12@2x.jpg');">
     <div class="push-50-t push-15">
-        <h1 class="h2 text-white animated zoomIn">Dashboard</h1>
-        <h2 class="h5 text-white-op animated zoomIn font-w300">Hi, <b>{{ Auth::user()->name }}</b></h2>
+        <h4 class="h4 font-w300 text-white animated zoomIn">
+            <span class="font-w600">Dashboard : </span> Portal Juruteknik Komputer Negeri Perak (JTKPK)
+        </h4>
     </div>
 </div>
 <!-- END Page Header -->
 
 <!-- Menu -->
+<!--
 <div class="content padding-5-t bg-white border-b">
     <div class="push-15 push-10-t">
         <div class="row">
-            <div class="col-md-6">
-                <a class="btn btn-default" href="{{ url('/') }}">
-                    <i class="fa fa-home"></i>
-                </a>
+            <div class="col-md-6 font-w300">
             </div>
             <div class="col-md-6 text-right">
             </div>
         </div>
     </div>
 </div>
+//-->
 <!-- END Menu -->
-
 
 <!-- Page Content -->
 <div class="content">
@@ -49,8 +48,8 @@
                             </a>
                         </div>
 
-                        @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
-                            @if (Auth::user()->role == 'super-admin')
+                        @if (Auth::user()->hasRole('super-admin') || Auth::user()->hasRole('admin'))
+                            @if (Auth::user()->hasRole('super-admin'))
                                 <!-- Packages -->
                                 <div class="col-sm-6 col-md-3">
                                     <a class="block block-bordered block-rounded block-link-hover3" href="{{ url('/admin/packages') }}">
@@ -77,6 +76,32 @@
                             </div>
                         @endif
 
+                        <!-- Tugasan Harian -->
+                        @if (!Auth::user()->hasRole('jpn'))
+                        <div class="col-sm-6 col-md-3">
+                            <a class="block block-bordered block-rounded block-link-hover3" href="{{ url('/tugasan-harian') }}">
+                                <div class="block-content block-content-full text-center">
+                                    <div>
+                                        <i class="fa fa-check-square-o fa-3x"></i>
+                                    </div>
+                                    <div class="text-uppercase h5 font-w500 push-15-t push-5">Tugasan Harian</div>
+                                </div>
+                            </a>
+                        </div>
+                        @endif
+
+                        <!-- Aduan Kerosakan -->
+                        <div class="col-sm-6 col-md-3">
+                            <a class="block block-bordered block-rounded block-link-hover3" href="{{ url('/aduan-kerosakan') }}">
+                                <div class="block-content block-content-full text-center">
+                                    <div>
+                                        <i class="fa fa-wrench fa-3x"></i>
+                                    </div>
+                                    <div class="text-uppercase h5 font-w500 push-15-t push-5">Aduan Kerosakan</div>
+                                </div>
+                            </a>
+                        </div>
+
                         <!-- Development Team -->
                         <div class="col-sm-6 col-md-3">
                             <a class="block block-bordered block-rounded block-link-hover3" href="{{ url('/dev-team') }}">
@@ -84,7 +109,31 @@
                                     <div>
                                         <i class="fa fa-users fa-3x"></i>
                                     </div>
-                                    <div class="text-uppercase h5 font-w500 push-15-t push-5">Kumpulan Development Team</div>
+                                    <div class="text-uppercase h5 font-w500 push-15-t push-5">Development Team</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- SMART Team -->
+                        <div class="col-sm-6 col-md-3">
+                            <a class="block block-bordered block-rounded block-link-hover3" href="{{ url('/smart-team') }}">
+                                <div class="block-content block-content-full text-center">
+                                    <div>
+                                        <i class="fa fa-ambulance fa-3x"></i>
+                                    </div>
+                                    <div class="text-uppercase h5 font-w500 push-15-t push-5">SMART Team</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- FORUM -->
+                        <div class="col-sm-6 col-md-3">
+                            <a class="block block-bordered block-rounded block-link-hover3" href="{{ url('/forums') }}">
+                                <div class="block-content block-content-full text-center">
+                                    <div>
+                                        <i class="fa fa-comments fa-3x"></i>
+                                    </div>
+                                    <div class="text-uppercase h5 font-w500 push-15-t push-5">FORUM</div>
                                 </div>
                             </a>
                         </div>

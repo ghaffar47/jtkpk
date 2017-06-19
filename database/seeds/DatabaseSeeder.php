@@ -17,5 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PPDDataSeeder::class);
         $this->call(SekolahDataSeeder::class);
         $this->call(UsersDataSeeder::class);
+        $this->call(UserRolesDataSeeder::class);
+        $this->call(ChatterTableSeeder::class);
+        $this->call(SenaraiSemakanDataSeeder::class);
+        $this->call(KategoriKerosakanDataSeeder::class);
+        $this->call(PKGDataSeeder::class);
     }
 }

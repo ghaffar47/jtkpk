@@ -12,4 +12,9 @@ class Gred extends Model
     {
     	return $this->gred . " - " . $this->nama_jawatan;
     }
+
+    public function getGredTitleCetakanAttribute()
+    {
+    	return $this->nama_jawatan . " (" . $this->gred.")";
+    }
 }

@@ -25,7 +25,8 @@ class CreatePackagesTable extends Migration
             $table->string('package_icon_text')->nullable();
             $table->string('package_url')->nullable();
             $table->integer('package_status')->default(0);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

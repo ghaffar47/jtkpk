@@ -20,7 +20,9 @@ class CreatePpdTable extends Migration
             $table->string('kod_jpn');
             $table->string('kod_ppd')->unique();
             $table->string('ppd');
-            $table->timestamps();
+            $table->string('website')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

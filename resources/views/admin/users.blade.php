@@ -8,27 +8,36 @@ $('#Users').DataTable({ responsive: true });
 
 @section('content')
 <!-- Page Header -->
-<div class="content bg-image overflow-hidden" style="background-image: url('/assets/img/photos/photo3@2x.jpg');">
-    <div class="push-50-t push-15">
-        <h1 class="h2 text-white animated fadeInUp">
+<div class="content bg-image overflow-hidden" style="background-image: url('/assets/img/photos/photo12@2x.jpg');">
+    <div class="push-100-t push-15">
+        <h1 class="h2 font-w300 text-white animated fadeInUp">
             <i class="fa fa-users push-15-r"></i> Senarai Pengguna
         </h1>
     </div>
 </div>
 <!-- END Page Header -->
 
+<!-- Menu -->
+<div class="content padding-5-t bg-white border-b">
+    <div class="push-15 push-10-t">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" onclick="javascript:AddUserDialog();" data-toggle="tooltip" title="Tambah Pengguna">
+                    <i class="fa fa-plus push-5-r"></i><i class="fa fa-user"></i>
+                </button>
+            </div>
+            <div class="col-md-6 text-right">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Menu -->
+
 <!-- Page Content -->
 <div class="content content-narrow">
     <div class="row">
         <div class="col-xs-12">
             <div id="_users" class="block block-themed block-rounded push-5">
-                
-                <div class="block-content block-content-full block-content-mini border-b bg-gray-lighter">
-                    <button type="button" class="btn btn-primary" onclick="javascript:AddUserDialog();" data-toggle="tooltip" title="Tambah Pengguna">
-                        <i class="fa fa-plus push-5-r"></i><i class="fa fa-user"></i>
-                    </button>
-                </div>
-                
                 <div class="block-content">
                     <table id="Users" class="table table-striped table-bordered responsive h6">
                         <thead>
@@ -48,14 +57,30 @@ $('#Users').DataTable({ responsive: true });
                                 <td class="text-center">{{ $i }}.</td>
                                 <td>
                                     <a href="#" onclick="javascript:EditUser('{{ $user->id }}');return false;">
-                                        <span class="font-w300 h5 text-primary">{{ $user->name }}</span>
+                                        <div class="font-w300 h5 text-primary">
+                                            <img class="img-avatar img-avatar32 push-5-r" src="/avatar/{{ $user->id }}" title="{{ $user->name }}">
+                                            {{ $user->name }}
+                                        </div>
                                     </a>
                                 </td>
                                 <td class="text-left">
-                                    <a href="mailto:{{ $user->email }}"><i class="fa fa-envelope push-5-r"></i>{{ $user->email }}</a>
+                                    <i class="fa fa-envelope push-5-r"></i>{{ $user->email }}
                                 </td>
-                                <td class="text-center">{{ $user->roles->role_name }}</td>
+                                <td class="text-left">
+                                    @if ($user->roles()->count() > 0)
+                                        @foreach ($user->roles()->get() as $role)
+                                            <span class="badge badge-primary">
+                                                <i class="fa fa-user"></i> {{ $role->role_name }}
+                                            </span>
+                                        @endforeach
+                                    @else
+                                    -
+                                    @endif
+                                </td>
                                 <td class="text-center" width="150">
+                                    <button class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit Pengguna" onclick="javascript:EditUser('{{ $user->id }}');return false;">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
                                     <a href="{{ url('/admin/users/'.$user->id.'/delete') }}" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Padam Pengguna">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
@@ -105,8 +130,7 @@ $('#Users').DataTable({ responsive: true });
                         <div class="form-group items-push border-b">
                             <label class="col-sm-4 control-label">Kumpulan Pengguna :</label>
                             <div class="col-sm-8">
-                                <select id="_usergroups" name="_usergroups" data-placeholder="Kumpulan Pengguna" class="form-control js-select2" style="width:100%;">
-                                    <option></option>
+                                <select multiple id="_usergroups" name="_usergroups[]" data-placeholder="Kumpulan Pengguna" class="form-control js-select2" style="width:100%;">
                                     @foreach (App\Roles::all() as $role)
                                         <option value="{{ $role->role }}">{{ $role->role_name }}</option>
                                     @endforeach

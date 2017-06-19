@@ -1,52 +1,62 @@
-## Template Sistem (Web-Based) - Juruteknik Komputer Negeri Perak (JTKPK)
+## Portal Juruteknik Komputer Negeri Perak (JTKPK)
 
-![Versi Template](http://img.shields.io/badge/Versi-v0.0.1-green.svg)
+![Versi Template](http://img.shields.io/badge/Versi-v1.0-green.svg)
 
-Template Sistem (Web-Based) & Platform utama sistem bersepadu bagi Kumpulan DEV-TEAM JTKPK. :+1:
+Portal bersepadu Juruteknik Komputer (FT) & Platform utama bagi menguruskan pelbagai maklumat berkaitan dengan tugasan FT. :+1:
 
-[![Antaramuka Log Masuk Sistem](https://s12.postimg.org/6v3x9myfh/Screen_Shot_2016_11_01_at_4_05_29_PM.png)](https://postimg.org/image/6icj3gg5l/)
-
-**Antaramuka Log Masuk Sistem**
-
-[![Antaramuka Dashboard](https://s13.postimg.org/9gbnu98rr/Screen_Shot_2016_11_01_at_4_06_55_PM.png)](https://postimg.org/image/caet7paxv/)
-
-**Antaramuka Dashboard**
-
-Ini adalah antaramuka utama apabila log masuk ke sistem. Semua pakej/modul yang telah didevelop oleh kumpulan DevTeam akan disenaraikan di muka hadapan Dashboard ini.
-
-[![Senarai Pakej/Module dalam Sistem](https://s18.postimg.org/k1qkd9t61/Screen_Shot_2016_11_01_at_4_09_14_PM.png)](https://postimg.org/image/tz1l6c0rp/)
-
-**Antaramuka Pakej (Bahagian Pentadbir)**
-
-Ini merupakan antaramuka yang menyenaraikan semua pakej/modul telah dipasang (embed) ke dalam sistem. Bahagian ini hanya dapat diakses oleh sistem pentadbir sahaja.
+[![Antaramuka Dashboard](https://image.ibb.co/hdra0k/jtkpk_1.jpg)](https://image.ibb.co/hdra0k/jtkpk_1.jpg)
+[![Antaramuka Dashboard](https://image.ibb.co/d11KRQ/jtkpk_2.jpg)](https://image.ibb.co/d11KRQ/jtkpk_2.jpg)
+[![Antaramuka Dashboard](https://image.ibb.co/hJ3cD5/jtkpk_3.jpg)](https://image.ibb.co/hJ3cD5/jtkpk_3.jpg)
 
 ### **Nota Ringkas:**
 
-#### Repository ini mengandungi projek sumber terbuka Framework Laravel (PHP) yang digunapakai dalam pembangunan sistem web-based bagi kumpulan DEV-TEAM JTKPK. Sistem ini telah diubahsuai mengikut keperluan dan kesesuaian bagi sistem yang akan dibangunkan.
+#### Repository ini mengandungi projek sumber terbuka *Framework Laravel (PHP)*. Sistem ini mengandungi modul-modul yang digunapakai dalam menguruskan semua maklumat berkaitan dengan tugasan FT. Sistem ini telah diubahsuai mengikut keperluan dari masa ke semasa.
 
-**Template sistem ini mengandungi :**
+**Modul-Modul :**
 
-* Modul Pendaftaran Pengguna bagi sistem (Full authentication).
+* Modul Pendaftaran Pengguna bagi sistem *(full authentication)*.
 * Maklumat JPN, PPD, dan Sekolah di dalam Negeri PERAK sahaja (buat masa ini).
-* Dimurnikan lagi dengan template Themes (Kredit [@putera](https://github.com/putera)) yang sangat cantik dan fluid untuk mobile.
-* Dibangunkan khusus untuk **SMART DEVELOPMENT TEAM** bagi JTKPK.
+* Dimurnikan lagi dengan Themes (Kredit [@putera](https://github.com/putera)) yang sangat cantik dan fluid untuk mobile.
+* Modul Development Team - Pengurusan kumpulan Development Team, projek.
+* Modul SMART Team - Pengurusan kumpulan SMART Team serta aktiviti.
+* Aktiviti Ad-Hoc (Aktiviti yang dijalankan yang tidak melibatkan kumpulan SMART Team)
+* Modul FORUM
+* Modul Log Tugasan & Senarai Semak Harian - Menguruskan log tugasan & senarai semak harian
+* Modul Aduan Kerosakan Peralatan ICT (AKP) - Menguruskan aduan kerosakan peralatan ICT
 
-**Plug-ins yang telah dimasukkan antaranya ialah :**
+**Laporan :**
 
-* facebook/php-graph-sdk (Facebook Graph API)
-* abraham/twitteroauth (Twitter API)
-* dompdf/dompdf (Untuk generate fail PDF)
-* google/recaptcha (reCAPTCHA untuk mengelakkan SPAM dan ABUSE)
+* Laporan Bulanan Aduan Kerosakan Peralatan ICT (AKP)
+* Laporan Bulanan Log Tugasan & Senarai Semak Harian
+* Laporan Bulanan Kelajuan Talian Internet 1BestariNet *(Speedtest)*
+
+**Komponen yang telah dimasukkan antaranya ialah :**
+
+* Facebook Graph API
+* Twitter API
+* DOMPDF (Untuk generate fail PDF)
+* Google reCAPTCHA (Untuk mengelakkan SPAM dan ABUSE sistem)
+* Cloudinary API (Upload gambar secara PERCUMA)
 * dan akan ditambah dari masa ke semasa mengikut kepada keperluan.
 
-> Untuk mendapatkan template sistem ini, anda perlulah memasang Git (https://git-scm.com) & Composer (https://getcomposer.org) dan ikuti arahan berikut:
+## Cloning & Cara Pemasangan
 
-**Langkah 1 :** Clone Repositori ini
+> Sila install perisian Git (https://git-scm.com) & Composer (https://getcomposer.org) untuk proses cloning dan ikuti langkah di bawah :
+
+**Langkah 1 :** Clone/Muatturun sos kod ini
 ```
 git clone https://github.com/putera/jtkpk.git
 ```
 
-**Langkah 2 :** Setting fail .ENV (Sambungan ke Pangkalan Data)
+**Langkah 2 :** Kemaskini Composer
+```
+composer update
+```
+
+**Langkah 3 :** Konfigurasi Database & Portal
+
+*.ENV*
+
 ```
 DB_CONNECTION=mysql
 DB_HOST=localhost
@@ -56,17 +66,31 @@ DB_USERNAME=<DATABASE_USER>
 DB_PASSWORD=<DATABASE_PASSWORD>
 ```
 
-**Langkah 3 :** Migrate Pangkalan Data
+*config/app.php*
+
+```
+'debug' => env('APP_DEBUG', false),
+'url' => env('APP_URL', 'URL_SEBENAR_WEB_ANDA'),
+```
+
+**Langkah 4 :** Migrate Database (Wujudkan table-table dalam database)
 ```
 php artisan migrate
 ```
 
-**Langkah 4 :** Seed Pangkalan Data
+**Langkah 5 :** Seed Database (Masukkan maklumat data asas ke dalam database)
 ```
 php artisan db:seed
 ```
 
-**Langkah 5 :** Run Sistem
+** Untuk pengguna macOS/Ubuntu dan Linux, Buka *terminal* dan tukar *permission* untuk *write access* folder berkenaan
+```
+sudo chmod -R 777 storage/
+sudo chmod -R 777 public/devteam/kertas-kerja/
+sudo chmod -R 777 bootstrap/
+```
+
+**Langkah 6 :** Run Sistem
 ```
 php artisan serve
 ```
@@ -77,10 +101,14 @@ Layari : http://localhost:8000
 
 Itu sahaja ! Mudah kan ?
 
-**Pengguna & Kata Laluan Administrator default adalah :**
+**Pengguna & Kata Laluan Administrator *default* adalah :**
 ```
-ID Pengguna/Email : admin@domain.com
+E-mel : admin@jtkpk.dev
 Kata Laluan : password
 ```
 
 Sebarang masalah boleh berhubung terus dengan saudara Zulkifli Mohamed [(@putera)](https://github.com/putera). Terima kasih.
+
+## Contribute & Penambahbaikan Portal JTKPK
+
+Untuk menjadi salah seorang daripada penyumbang atau contributor dalam penambahbaikan portal JTKPK ini, anda boleh *fork* repositori ini dan sila *Pull Request* sos kod anda untuk diuji sebelum dimerge kedalam master sistem. Terima kasih.

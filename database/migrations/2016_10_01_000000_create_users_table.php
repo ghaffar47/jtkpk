@@ -21,12 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->string('role')->default('user');
             $table->integer('gred')->nullable();
             $table->string('kod_jpn')->nullable();
             $table->string('kod_ppd')->nullable();
             $table->string('kod_jabatan')->nullable();
-            $table->timestamps();
+            $table->string('avatarType')->nullable();
+            $table->binary('avatar')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

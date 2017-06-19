@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://jtkpk.dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -181,6 +181,8 @@ return [
         /*
          * JTKPK Package Service Provider...
          */
+
+	DevDojo\Chatter\ChatterServiceProvider::class,
 
         // (Contoh : PUTERA\LogTugasan\LogTugasanServiceProvider::class,
 

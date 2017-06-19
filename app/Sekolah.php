@@ -12,4 +12,9 @@ class Sekolah extends Model
     {
     	return $this->kod_sekolah . ' - ' . $this->nama_sekolah;
     }
+
+    public function getNamaSekolahDetailCetakanAttribute()
+    {
+    	return $this->nama_sekolah . ' (' . $this->kod_sekolah . ')';
+    }
 }
